@@ -19,3 +19,4 @@ public class Member {
 	private Date   creationDate;
 	
 }
+

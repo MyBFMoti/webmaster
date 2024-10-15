@@ -51,4 +51,9 @@
   FROM tbl_member
   WHERE member_id = #{memberId}
   </delete>
+  <select id="selectMember">
+  SELECT *
+  FROM tbl_member;
+  </select>
+  
 </mapper>
