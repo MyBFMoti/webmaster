@@ -5,26 +5,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
+ <jsp:include page="../../includes/header.jsp"></jsp:include>
 	<form action="memberAdd.do">
-	 <table border='1'>
+	 <table class="table">
 	 	<tr>
-	 		<th>회원ID</th><td><input type="text" name="mid"></td>
+	 		<th>회원ID</th><td align="center"><input type="text" name="mid"></td>
 	 	</tr>
 	 	<tr>
-	 		<th>회원이름</th><td><input type="text" name="mname"></td>
+	 		<th>회원이름</th><td align="center"><input type="text" name="mname"></td>
 	 	</tr>
 	 	<tr>
-	 		<th>비밀번호</th><td><input type="password" name="passwd"></td>
+	 		<th>비밀번호</th><td align="center"><input type="password" name="passwd"></td>
 	 	</tr>
 	 	<tr>
-	 		<th>연락처</th><td><input type="text" name="phone"></td>
+	 		<th>연락처</th><td align="center"><input type="text" name="phone"></td>
 	 	</tr>
 	 	<tr>
-	 		<td colspan="2"><input type="submit" valuse="저장"></td>
+	 		<td colspan="2"  align="center"><input type="submit" class="btn btn-primary" valuse="저장"></td>
 	 	</tr>
 	 </table>
 	</form>
+	<jsp:include page="../../includes/footer.jsp"></jsp:include>
 </body>
 </html>
