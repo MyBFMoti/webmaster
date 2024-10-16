@@ -2,15 +2,15 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yedam.dao.MemberMapper">
-  <select id="members" resultType="com.yedam.vo.Member">
-    select * from tbl_member
+<mapper namespace="com.yedam.mapper.MemberMapper">
+  <select id="members" resultType="member">
+    select * from tbl_member order by 1
   </select>
-  <insert id="insertMember" parameterType="com.yedam.vo.Member">
+  <insert id="insertMember" parameterType="member">
   	INSERT INTO tbl_member (member_id, member_name, password, phone)
   	VALUES(#{memberId}, #{memberName}, #{password}, #{phone})
   </insert>
-  <update id="updateMember" parameterType="com.yedam.vo.Member">
+  <update id="updateMember" parameterType="member">
   <!-- 교수님이 한 방법 -->
   UPDATE tbl_member SET creation_date = creation_date
   <if test="memberName != null">
@@ -47,7 +47,7 @@
   WHERE member_id = #{memberId}
   </update>
   
-  <delete id="deleteMember" parameterType="com.yedam.vo.Member">
+  <delete id="deleteMember" parameterType="String">
   DELETE
   FROM tbl_member
   WHERE member_id = #{memberId}
@@ -55,7 +55,7 @@
   
  
   
-  <select id="selectMember" parameterType="String" resultType="com.yedam.vo.Member">
+  <select id="selectMember" parameterType="String" resultType="member">
   	 SELECT member_id
   	       ,member_name
   	       ,password

@@ -10,6 +10,7 @@ public interface MemberMapper {
 	public List<Member> members();
 	public int insertMember(Member member);
 	public int updateMember(Member member);
-	public int deleteMember(Member member);
-	public int selectMember(Member member);
+	public int deleteMember(String memberId);
+	public Member selectMember(String memberid);//단건조회
+	
 }
