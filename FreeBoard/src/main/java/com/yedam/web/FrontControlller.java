@@ -34,6 +34,20 @@ public class FrontControlller extends HttpServlet {
 		map.put("/memberAddForm.do", new MemberAddFormControl());
 		map.put("/memberAdd.do", new MemberAddControl());
 		
+		
+		//게시판 관련
+		map.put("/boardList.do", new BoardListControl());
+		map.put("/board.do", new BoardControl());
+		
+		//글 등록(등록화면 -> 등록처리)
+		map.put("/addBoardForm.do", new AddBoardForm());
+		map.put("/addBoard.do", new AddBoardControl());
+		
+		//글 수정(수정화면 -> 변경처리)
+		map.put("/modifyBoard.do", new ModifyBoardControl());
+		
+		//글 삭제(삭제화면 -> 삭제처리)
+		map.put("/removeBoard.do", new RemoveBoardControl());
 	}
 	
 
