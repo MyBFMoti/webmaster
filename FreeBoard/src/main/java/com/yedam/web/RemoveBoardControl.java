@@ -19,12 +19,18 @@ public class RemoveBoardControl implements Control {
 		
 		req.setCharacterEncoding("UTF-8");		//post 방식일 때 필요
 		String bno = req.getParameter("bno");
+		String page = req.getParameter("page");
+		String sc = req.getParameter("searchCondition");
+		String kw = req.getParameter("keyword");
 		BoardService svc = new BoardServiceImpl();
 		
 		if(req.getMethod().equals("GET")) {
 			BoardVO board = svc.searchBoard(Integer.parseInt(bno));
 			
 			req.setAttribute("boardvo", board);
+			req.setAttribute("page", page);
+			req.setAttribute("keyword", kw);
+			req.setAttribute("searchCondition", sc);
 			req.getRequestDispatcher("WEB-INF/jsp/removeForm.jsp").forward(req, resp);
 			
 		}else if (req.getMethod().equals("POST")) {

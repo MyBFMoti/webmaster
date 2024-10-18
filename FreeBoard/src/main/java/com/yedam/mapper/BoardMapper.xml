@@ -15,12 +15,25 @@
     from tbl_board
     order by board_no
   </select>
-  <select id="listWithPage" parameterType="int">
+  <select id="listWithPage" parameterType="com.yedam.common.SearchDTO">
   	SELECT b.*
 	FROM   (SELECT ROWNUM rn, a.*
             FROM   (SELECT *
                     FROM   tbl_board
-                    ORDER  BY board_no) a) b
+                    <where>
+                    <choose>
+                    	<when test="searchCondition == 'T'.toString()">
+                    		title LIKE '%'||#{keyword}||'%'
+                    	</when>
+                    	<when test="searchCondition == 'W'.toString()">
+                    		writer LIKE '%'||#{keyword}||'%'
+                    	</when>
+                    	<when test="searchCondition == 'TW'.toString()">
+                    		(title LIKE '%'||#{keyword}||'%') OR (writer LIKE '%'||#{keyword}||'%')
+                    	</when>
+                    </choose>
+                    </where> 
+                    ORDER  BY board_no desc) a) b
     WHERE  b.rn > (#{page} -1) *5
     <!-- <연산자가 <꺾새로 인식 못하도록 -->
     <![CDATA[
@@ -71,11 +84,31 @@
     FROM  tbl_board
     WHERE board_no = #{boardNo}
   </select>
+  <!-- 조회수 -->
   <update id="updateCount" parameterType="int">
   	UPDATE tbl_board
   	SET    view_cnt = view_cnt + 1
   	WHERE  board_no = #{boardNo}
   </update>
+  
+  <!-- 페이징 카운트 -->
+  <select id="selectCount" resultType="int">
+  	SELECT count(1)
+  	FROM   tbl_board
+  	<where>
+                    <choose>
+                    	<when test="searchCondition == 'T'.toString()">
+                    		title LIKE '%'||#{keyword}||'%'
+                    	</when>
+                    	<when test="searchCondition == 'W'.toString()">
+                    		writer LIKE '%'||#{keyword}||'%'
+                    	</when>
+                    	<when test="searchCondition == 'TW'.toString()">
+                    		(title LIKE '%'||#{keyword}||'%') OR (writer LIKE '%'||#{keyword}||'%')
+                    	</when>
+                    </choose>
+     </where> 
+  </select>
   
   
   

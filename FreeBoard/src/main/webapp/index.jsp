@@ -3,6 +3,7 @@
 <%@page import="com.yedam.service.MemberServiceImpl" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,23 +12,35 @@
 </head>
 <body>
 	<!-- MVC 디자인: View(JSP페이지) , Module(DB처리), 컨트롤 -->
-	<!--jsp에서 자바코드 사용(보통은 구분)  -->
-	<% 
-		String myName = "이신화";
-		MemberService svc =  new MemberServiceImpl();
-		if(svc.retireMember("user11")){	
-	%>
-			<p>삭제되었습니다</p>
-	
-	<%	} else{%>
-			<p>회원정보가 없습니다.</p>
-	<%	} %>
-	
-	<!--jsp에서 자바에서 만든 변수 불러오기 -->
-	<h3>내 이름은<%=myName %>입니다.</h3>
-	<h2>dddd</h2>
+	<!-- Expression Langguage : El -->
 	
 	
+	<!--  <p>${3+5 > 9 ? "OK" : "NG"}</p>-->
 	
+	<!-- jsp action tag-->
+	<!-- jsp Standard Tag Libarary : JSTL -->
+	<p>${logId}</p>
+	<c:set var="name" value="Hong"></c:set>
+	<c:out value="${name} "></c:out>
+	
+	<c:set var="age" value="20"></c:set>
+	<c:if test="{age>=20}">
+		<p>청년입니다</p>
+	</c:if>
+	
+	<c:choose>
+		<c:when test="${age>=60 }">
+			<p>노인</p>
+		</c:when>
+		<c:when test="${age>=20 }">
+			<p>성인</p>
+		</c:when>
+		<c:otherwise>
+			<p>미성년자</p>
+		</c:otherwise>
+	</c:choose>
+	
+	
+
 </body>
 </html>

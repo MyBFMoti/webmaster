@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.common.Control;
 
 @WebServlet("*.do")
-public class FrontControlller extends HttpServlet {
+public class FrontController extends HttpServlet {
 	
 	Map<String, Control> map;
 	
-	public FrontControlller() {
+	public FrontController() {
 		//System.out.println("객체생성");
 		
 		map = new HashMap<>();
@@ -48,6 +48,12 @@ public class FrontControlller extends HttpServlet {
 		
 		//글 삭제(삭제화면 -> 삭제처리)
 		map.put("/removeBoard.do", new RemoveBoardControl());
+		
+		//로그인 관련
+		map.put("/loginForm.do", new LoginControl());
+		
+		//로그아웃 관련
+		map.put("/logOut.do", new LogoutControl());
 	}
 	
 

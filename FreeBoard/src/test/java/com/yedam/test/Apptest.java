@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DataSource;
+import com.yedam.common.SearchDTO;
 import com.yedam.mapper.BoardMapper;
 import com.yedam.vo.BoardVO;
 
@@ -13,6 +14,11 @@ public class Apptest {
 		SqlSession sqlSession = DataSource.getInstance().openSession();
 		BoardMapper mapper =sqlSession.getMapper(BoardMapper.class);
 		
+		
+		SearchDTO search = new SearchDTO();
+		search.setKeyword("JSP");
+		search.setSearchCondition("T");
+		search.setPage(2);
 //		BoardVO bvo = new BoardVO();
 //		bvo.setTitle("mapper테스트");
 //		bvo.setContent("정상 작동합니다");
@@ -47,9 +53,12 @@ public class Apptest {
 //		}
 		
 		//페이징- 5개씩 출력 listWithPage(페이지)
-		List<BoardVO> list2 = mapper.listWithPage(2);
+		List<BoardVO> list2 = mapper.listWithPage(search);
 		for(BoardVO bvo3 : list2) {
 			System.out.println(bvo3.toString());
 		}
+		
+		
+		
 	}
 }

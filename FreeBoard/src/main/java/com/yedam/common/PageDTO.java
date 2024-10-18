@@ -8,8 +8,9 @@ public class PageDTO {
 	private boolean prev, next;
 	private int page;	//현재 페이지
 	
-	public PageDTO(int page) {
-		int totalCnt = 40;
+	public PageDTO(int page, int totalCnt) {
+		//int totalCnt = 64;		//13페이지 마지막
+		this.page = page;
 		this.endPage =(int) Math.ceil(page / 10.0) * 10;
 		this.startPage = this.endPage - 9;
 		
