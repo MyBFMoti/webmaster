@@ -74,48 +74,61 @@
 </table>
 
 <!-- paging -->
-<!--<%=paging %>  -->
+<!--<%=paging %>-->
+
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
   
   	<!-- 이전페이지 여부 -->
-  	
-  	<%if (paging.isPrev()) {%>
-    	<li class="page-item">
-      		<a class="page-link" href="boardList.do?searchCondition=<%=sc %>&keyword=<%=kw==null ? "" : kw %>&page=<%=paging.getStartPage()-1 %>">Previous</a>
-    	</li>
-    <%}else { %>
-    	<li class="page-item disabled">
-      		<a class="page-link">Previous</a>
-    	</li>
-   	<%} %>
+  	<c:choose>
+    <c:when test="${page.prev}">
+        <li class="page-item">
+            <a class="page-link" href="boardList.do?searchCondition=${sc}&keyword=${kw}&page=${page.startPage - 1}">Previous</a>
+        </li>
+    </c:when>
+    <c:otherwise>
+        <li class="page-item disabled">
+            <a class="page-link">Previous</a>
+        </li>
+    </c:otherwise>
+	</c:choose>
+	
    	
    
    	
    	
    	<!-- 페이지 출력 -->
-    <% for(int p = paging.getStartPage(); p<=paging.getEndPage(); p++) {%>
-    	<%if(paging.getPage()==p) {%>
-    		<li class="page-item active" aria-current="page">
-    			<span class="page-link"><%=p %></span>
-    		</li>
-    	<%} else { %>
-    		<li class="page-item">
-    			<a class="page-link" href="boardList.do?searchCondition=<%=sc==null ? "" : sc %>&keyword=<%=kw==null ? "" : kw %>&page=<%=p %>"><%=p %></a>
-    		</li>
-    	<%} %>
-   	<%} %>
+   	
+   	<c:forEach var="p" begin="${page.startPage}" end="${page.endPage}">
+        <c:choose>
+            <c:when test="${page.page == p}">
+                <li class="page-item active" aria-current="page">
+                    <span class="page-link">${p}</span>
+                </li>
+            </c:when>
+            <c:otherwise>
+                <li class="page-item">
+                    <a class="page-link" href="boardList.do?searchCondition=${sc}&keyword=${kw}&page=${p}">${p}</a>
+                </li>
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+    
    	
    	<!--  다음페이지 여부 -->
-   	<%if (paging.isNext()) {%>
-   		<li class="page-item">
-      		<a class="page-link" href="boardList.do?searchCondition=<%=sc==null ? "" : sc %>&keyword=<%=kw==null ? "" : kw %>&page=<%=paging.getEndPage()+1 %>">Next</a>
-    	</li>
-   	<%}else { %>
-   		<li class="page-item disabled">
-      		<a class="page-link">Next</a>
-    	</li>
-   	<%} %>
+   	<c:choose>
+    <c:when test="${page.next}">
+        <li class="page-item">
+            <a class="page-link" href="boardList.do?searchCondition=${sc}&keyword=${kw}&page=${page.endPage+1}">Next</a>
+        </li>
+    </c:when>
+    <c:otherwise>
+        <li class="page-item disabled">
+            <a class="page-link">Next</a>
+        </li>
+    </c:otherwise>
+	</c:choose>
+   
     
   </ul>
 </nav>
