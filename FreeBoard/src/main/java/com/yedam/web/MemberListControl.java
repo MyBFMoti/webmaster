@@ -23,8 +23,10 @@ public class MemberListControl implements Control {
 		req.setAttribute("memberList", list);
 		
 		try {
+			
+			req.getRequestDispatcher("admin/memberList.tiles").forward(req, resp);
 			//memberList.do 로 요청된 페이지에서 memberList.jsp요청재지정
-			req.getRequestDispatcher("WEB-INF/jsp/memberList.jsp").forward(req, resp);
+			//req.getRequestDispatcher("WEB-INF/jsp/memberList.jsp").forward(req, resp);
 		} catch (ServletException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

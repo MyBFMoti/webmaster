@@ -3,6 +3,8 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <jsp:include page="../includes/header.jsp"></jsp:include>
 <h3>상세페이지</h3>
@@ -17,19 +19,30 @@
 %>
 <table class="table">
 	<tr>
-		<th>글번호</th><td><%=bvo.getBoardNo() %></td><th>조회수</th><td><%=bvo.getViewCnt() %></td>
+		<th>글번호</th><td><c:out value="${boardvo.boardNo }"/></td><th>조회수</th><td><c:out value="${boardvo.viewCnt }"/></td>
 	</tr>
 	<tr>
-		<th>제목</th><td colspan="3"><%=bvo.getTitle() %></td>
+		<th>제목</th><td>${boardvo.title }</td>
+		<th>작성자</th><td>${boardvo.writer }</td>
 	</tr>
 	<tr>
-		<th>내용</th><td colspan="3"><textarea class="form-control" readonly="readonly"><%=bvo.getContent() %></textarea></td>
+		<th>내용</th><td colspan="3"><textarea class="form-control" readonly="readonly"><c:out value="${boardvo.content }"/></textarea></td>
 	</tr>
+	<c:if test="${boardvo.img != null }">
 	<tr>
-		<th>작성자</th><td colspan="3"><%=bvo.getWriter() %></td>
+		<th>이미지</th>
+		<td colspan="3">
+			
+				<img src="images/${boardvo.img}" width='150px'>
+			
+		</td>
 	</tr>
+	</c:if>
 	<tr>
-		<th>작성일시</th><td colspan="3"><%=wdate %></td>
+		<th>작성일시</th>
+		<td colspan="3">
+		<fmt:formatDate value="${boardvo.writeDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+		</td>
 	</tr>
 	<tr class="d-grid gap-2 d-md-block">
 		<td align="center"><input type="submit" class="btn btn-primary btn-lg" value="수정"></td>
@@ -42,11 +55,11 @@
 <script>
 	document.querySelector('input[value="수정"]')
 		.addEventListener('click', function(e){
-		location.href = 'modifyBoard.do?page=<%=pg %>&bno=<%=bvo.getBoardNo() %>&searchCondition=<%=sc==null ? "" : sc %>&keyword=<%=kw==null ? "" : kw %>'
+		location.href = 'modifyBoard.do?page=${page}&bno=${boardvo.boardNo}&searchCondition=${searchCondition}&keyword=${keyword}'
 	});
 	document.querySelector('input[value="삭제"]')
 	.addEventListener('click', function(e){
-	location.href = 'removeBoard.do?page=<%=pg %>&bno=<%=bvo.getBoardNo() %>&searchCondition=<%=sc==null ? "" : sc %>&keyword=<%=kw==null ? "" : kw %>'
+	location.href = 'removeBoard.do?page=${page}&bno=${boardvo.boardNo}&searchCondition=${searchCondition}&keyword=${keyword}'
 });
 	
 </script>

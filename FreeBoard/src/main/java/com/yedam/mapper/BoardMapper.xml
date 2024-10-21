@@ -12,6 +12,7 @@
           ,view_cnt
           ,write_date
           ,update_date
+          ,img
     from tbl_board
     order by board_no
   </select>
@@ -41,18 +42,20 @@
     ]]>
     
   </select>
-  
+  <!-- 구문오류 -->
   <insert id="insertBoard" parameterType="board">
   	INSERT INTO tbl_board 
   	(board_no
   	,title
   	,content
-  	,writer)
+  	,writer
+  	,img)
   	VALUES
   	(board_seq.NEXTVAL
   	,#{title}
   	,#{content}
-  	,#{writer})
+  	,#{writer}
+  	,#{img})
   </insert>
   
   <update id="updateBoard" parameterType="board">
@@ -81,6 +84,7 @@
           ,view_cnt
           ,write_date
           ,update_date
+          ,img
     FROM  tbl_board
     WHERE board_no = #{boardNo}
   </select>

@@ -6,7 +6,7 @@ import com.yedam.common.SearchDTO;
 import com.yedam.vo.BoardVO;
 
 public interface BoardMapper {
-	//글목록
+	//글목록(게시판 관련)
 	List<BoardVO> boardList();
 	List<BoardVO> listWithPage(SearchDTO search);
 	//글등록

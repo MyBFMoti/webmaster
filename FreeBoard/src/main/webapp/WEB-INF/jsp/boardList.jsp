@@ -7,7 +7,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<jsp:include page="../includes/header.jsp"></jsp:include>
 <h3>글 목록</h3>
 <%
 	List<BoardVO> list = (List<BoardVO>) request.getAttribute("boardList");
@@ -83,7 +82,7 @@
   	<c:choose>
     <c:when test="${page.prev}">
         <li class="page-item">
-            <a class="page-link" href="boardList.do?searchCondition=${sc}&keyword=${kw}&page=${page.startPage - 1}">Previous</a>
+            <a class="page-link" href="boardList.do?searchCondition=${searchCondition}&keyword=${keyword}&page=${page.startPage - 1}">Previous</a>
         </li>
     </c:when>
     <c:otherwise>
@@ -108,7 +107,7 @@
             </c:when>
             <c:otherwise>
                 <li class="page-item">
-                    <a class="page-link" href="boardList.do?searchCondition=${sc}&keyword=${kw}&page=${p}">${p}</a>
+                    <a class="page-link" href="boardList.do?searchCondition=${searchCondition}&keyword=${keyword}&page=${p}">${p}</a>
                 </li>
             </c:otherwise>
         </c:choose>
@@ -119,7 +118,7 @@
    	<c:choose>
     <c:when test="${page.next}">
         <li class="page-item">
-            <a class="page-link" href="boardList.do?searchCondition=${sc}&keyword=${kw}&page=${page.endPage+1}">Next</a>
+            <a class="page-link" href="boardList.do?searchCondition=${searchCondition}&keyword=${keyword}&page=${page.endPage+1}">Next</a>
         </li>
     </c:when>
     <c:otherwise>
@@ -132,4 +131,4 @@
     
   </ul>
 </nav>
-<jsp:include page="../includes/footer.jsp"></jsp:include>
+

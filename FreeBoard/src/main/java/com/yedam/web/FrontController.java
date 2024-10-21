@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 
-@WebServlet("*.do")
+//@WebServlet("*.do")		//web.xml에 추가했으므로 주석처리
+
 public class FrontController extends HttpServlet {
 	
 	Map<String, Control> map;
@@ -54,6 +55,9 @@ public class FrontController extends HttpServlet {
 		
 		//로그아웃 관련
 		map.put("/logOut.do", new LogoutControl());
+		
+		//자바스크립트 관련
+		map.put("/javascript.do", new JavaScriptCont());
 	}
 	
 
