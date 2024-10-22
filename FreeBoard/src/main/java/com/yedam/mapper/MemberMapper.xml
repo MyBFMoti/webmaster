@@ -51,6 +51,7 @@
   DELETE
   FROM tbl_member
   WHERE member_id = #{memberId}
+    AND responsibility != 'Admin'
   </delete>
   
  

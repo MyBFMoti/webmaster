@@ -1,4 +1,4 @@
-package com.yedam.web;
+package com.yedam.control.member;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,6 +17,8 @@ public class MemberListControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("MemberListControl");
+		
+		
 		MemberService svc = new MemberServiceImpl();
 		List<MemberVO> list = svc.memberlist();
 		

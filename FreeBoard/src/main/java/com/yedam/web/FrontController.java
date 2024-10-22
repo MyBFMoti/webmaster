@@ -13,6 +13,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
+import com.yedam.control.JavaScriptCont;
+import com.yedam.control.board.AddBoardControl;
+import com.yedam.control.board.AddBoardForm;
+import com.yedam.control.board.BoardControl;
+import com.yedam.control.board.BoardListControl;
+import com.yedam.control.board.ModifyBoardControl;
+import com.yedam.control.board.RemoveBoardControl;
+import com.yedam.control.member.AddMemberJsonCont;
+import com.yedam.control.member.LoginControl;
+import com.yedam.control.member.LogoutControl;
+import com.yedam.control.member.MemberAddControl;
+import com.yedam.control.member.MemberAddFormControl;
+import com.yedam.control.member.MemberJsonCont;
+import com.yedam.control.member.MemberListControl;
+import com.yedam.control.member.RemoveMemberJsonCont;
+import com.yedam.control.reply.ReplyListCont;
 
 //@WebServlet("*.do")		//web.xml에 추가했으므로 주석처리
 
@@ -58,6 +74,14 @@ public class FrontController extends HttpServlet {
 		
 		//자바스크립트 관련
 		map.put("/javascript.do", new JavaScriptCont());
+		//json 관련
+		map.put("/memberJson.do", new MemberJsonCont());
+		map.put("/addMemberJson.do",  new AddMemberJsonCont());
+		map.put("/removeMemberJson.do", new RemoveMemberJsonCont());
+		
+		//댓글(reply)관련
+		map.put("/replyList.do", new ReplyListCont());
+		
 	}
 	
 
