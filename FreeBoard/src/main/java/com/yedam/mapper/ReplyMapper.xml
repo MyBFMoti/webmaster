@@ -11,7 +11,20 @@
  	       reply_date
  	FROM   tbl_reply
  	WHERE  board_no=#{boardNo}
- 	ORDER  BY reply_no
+ 	ORDER  BY reply_no desc
+  </select>
+  
+  <select id="selectReplyListPaging" >
+	   SELECT a.*
+	   FROM  (
+	            SELECT /*+ INDEX_DESC (r pk_reply)*/rownum rn, r.*
+	            FROM   tbl_reply r
+	            WHERE  board_no = #{bno}
+	         )a
+	   WHERE a.rn > (#{page} -1) *5
+	   <![CDATA[
+	   AND a.rn <= #{page} * 5
+	  	]]>
   </select>
   
   <delete id="deleteReply" parameterType="int">
@@ -21,15 +34,19 @@
   </delete>
   
   <insert id="insertReply" parameterType="reply">
-  INSERT INTO tbl_reply(reply_no, 
-                        reply, 
-                        replyer, 
-                        board_no)
-  VALUES               (reply_seq.NEXTVAL
-                        ,#{reply}
-                        ,#{replyer}
-                        ,#{boardNo}
-                        )
+  	<selectKey keyProperty="replyNo" order="BEFORE" resultType="int">
+  		SELECT reply_seq.NEXTVAL
+  		FROM   dual
+  	</selectKey>
+	  INSERT INTO tbl_reply(reply_no, 
+	                        reply, 
+	                        replyer, 
+	                        board_no)
+	  VALUES               (#{replyNo}
+	                        ,#{reply}
+	                        ,#{replyer}
+	                        ,#{boardNo}
+	                        )
   </insert>
   
   <select id="selectReply" resultType="reply" parameterType="int">
@@ -42,6 +59,12 @@
  	WHERE  reply_no=#{replyNo}
   </select>
   
+  
+  <select id="selectCount" parameterType="int">
+  	SELECT COUNT(1)
+  	FROM   tbl_reply
+  	WHERE  board_no = #{boardNo}
+  </select>
   
   
 </mapper>

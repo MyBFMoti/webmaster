@@ -34,6 +34,16 @@ public class ReplyServiceImpl implements ReplyService{
 		// TODO Auto-generated method stub
 		return mapper.selectReply(replyNo);
 	}
+	@Override
+	public List<ReplyVO> replyList(int boardNo, int page) {
+		// TODO Auto-generated method stub
+		return mapper.selectReplyListPaging(boardNo, page);
+	}
+	@Override
+	public int replyCount(int boardNo) {
+		// TODO Auto-generated method stub
+		return mapper.selectCount(boardNo);
+	}
 
 	
 
