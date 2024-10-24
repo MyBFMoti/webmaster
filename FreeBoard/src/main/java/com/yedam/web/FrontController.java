@@ -13,6 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
+import com.yedam.control.CalendarCont;
+import com.yedam.control.ChartControl;
+import com.yedam.control.CountByWriterCont;
+import com.yedam.control.EventCont;
 import com.yedam.control.JavaScriptCont;
 import com.yedam.control.board.AddBoardControl;
 import com.yedam.control.board.AddBoardForm;
@@ -88,6 +92,15 @@ public class FrontController extends HttpServlet {
 		map.put("/addReply.do", new AddReplyCont());
 		map.put("/replyCount.do", new ReplyCountCont());
 		
+		//차트 관련
+		map.put("/chart.do", new ChartControl());
+		map.put("/countByWriter.do", new CountByWriterCont());
+		
+		//event관련
+		map.put("/event.do", new EventCont());
+		map.put("/calendar.do", new CalendarCont());
+		map.put("/addEvent.do", new EventCont());
+		map.put("/removeEvent.do", new EventCont());
 	}
 	
 

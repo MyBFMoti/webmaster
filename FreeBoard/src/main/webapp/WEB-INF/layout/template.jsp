@@ -31,6 +31,7 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="loginForm.do">로그인</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="boardList.do">게시글 목록</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="addBoardForm.do">게시글 등록</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="chart.do">차트</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="logOut.do">로그아웃</a>
                 </div>
             </div>
