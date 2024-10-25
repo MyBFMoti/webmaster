@@ -17,6 +17,8 @@ import com.yedam.control.CalendarCont;
 import com.yedam.control.ChartControl;
 import com.yedam.control.CountByWriterCont;
 import com.yedam.control.EventCont;
+import com.yedam.control.Exe1Cont;
+import com.yedam.control.Exe2Cont;
 import com.yedam.control.JavaScriptCont;
 import com.yedam.control.board.AddBoardControl;
 import com.yedam.control.board.AddBoardForm;
@@ -97,10 +99,15 @@ public class FrontController extends HttpServlet {
 		map.put("/countByWriter.do", new CountByWriterCont());
 		
 		//event관련
-		map.put("/event.do", new EventCont());
 		map.put("/calendar.do", new CalendarCont());
+		map.put("/event.do", new EventCont());
 		map.put("/addEvent.do", new EventCont());
 		map.put("/removeEvent.do", new EventCont());
+		
+		
+		//exe1연습
+		map.put("/exe1.do", new Exe1Cont());
+		map.put("/exe2.do", new Exe2Cont());
 	}
 	
 

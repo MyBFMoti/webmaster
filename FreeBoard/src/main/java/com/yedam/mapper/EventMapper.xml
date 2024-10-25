@@ -23,5 +23,9 @@
  	FROM   tbl_event
  	WHERE  title = #{title}
  </delete>
+ 
+ <update id="updateEvent" parameterType="hashmap">
+ 
+ </update>
 
 </mapper>

@@ -9,4 +9,6 @@ public interface EventMapper {
 	int insertEvent(Map<String, String> map);
 	
 	int deleteEventByTitle(String title);
+	
+	int updateEvent(Map<String, String> map);
 }
