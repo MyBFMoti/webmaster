@@ -14,14 +14,22 @@
     // 달력생성함수.
     function createCalender(target) {
       let tr = document.createElement('tr');
-      for (let d = 29; d <= 30; d++) {
+      let space = 2;
+      let lastDate = 31;
+      for (let d = 0; d < 2; d++) {
     	  let td = document.createElement('td');
-          td.innerHTML = d;
+          //td.innerHTML = d;
           tr.appendChild(td);
       }
-      for (let d = 1; d <= 31; d++) {
+      for (let d = 1; d <= lastDate; d++) {
         let td = document.createElement('td');
         td.innerHTML = d;
+        if ((d + space) % 7 == 1) { // 일요일.
+            td.style.color = 'red';
+        }
+        if ((d + space) % 7 == 0) { // 토요일.
+          td.style.color = 'blue';
+        }
         tr.appendChild(td);
         if (d % 7 == 5) {
           document.querySelector('#list').appendChild(tr);

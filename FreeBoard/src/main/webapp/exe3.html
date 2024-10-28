@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script>
+  	//innerHTML => html(), innerText => text(), value = val()
+  	$(function(e){
+  		//버튼 클릭 이벤트
+  		$("button").on('click', function(e){
+  			//console.log("클릭됨");
+  			//클래스 header의 input들의 값을 변수로 지정
+  			let id = $(".header input:eq(0)").val();
+  			let name = $(".header input:eq(1)").val();
+  			let point = $(".header input:eq(2)").val();
+  			if(!id || !name || !point){
+  				alert('값을 입력하세요');
+  				return;
+  			}
+  			//console.log(id);
+  			//console.log(name);
+  			//console.log(point);
+  			
+  			//추가 후 공백 처리
+  			$(".header input:eq(0)").val("");
+  			$(".header input:eq(1)").val("");
+  			$(".header input:eq(2)").val("")
+  			
+  			
+  			
+  			$("<tr />")							//document.createElement('tr')을 jquery식으로 생성
+  		  	 .append($('<td />').text(id)		//<td>id</td>
+  		  		   ,$('<td />').text(name)	    //<td>name</td>			//td들을 모두 <tr/>에 append
+  		  		   ,$('<td />').text(point)		//<td>point</td>
+  		    ).appendTo($('.content tbody'));	//그렇게 만든 <tr />을 클래스가 content인 tbody에 append
+  		});
+  		
+  		
+  				
+  	})
+  </script>
+</head>
+
+<body>
+  <div class="header">
+    <table border="2">
+      <tr>
+        <th>아이디</th>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <th>이름</th>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <th>점수</th>
+        <td><input type="number"></td>
+      </tr>
+      <tr>
+        <td align="center" colspan="2">
+          <button id="addBtn">추가</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="content">
+    <table border="1">
+      <thead>
+        <tr>
+          <th>아이디</th>
+          <th>이름</th>
+          <th>점수</th>
+        </tr>
+      </thead>
+      <tbody>
+		<tr><td>값1</td><td>값2</td><td>값3</td></tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
